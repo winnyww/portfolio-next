@@ -15,8 +15,8 @@ export const metadata: Metadata = {
   description:
     "Portfolio of Winny Wang, a 0 → 1 product designer crafting clean, delightful user experiences.",
   icons: {
-    icon: "/images/winny_logo.png",
-    apple: "/images/winny_logo.png",
+    icon: "/images/favicon.png",
+    apple: "/images/favicon.png",
   },
 }
 
