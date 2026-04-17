@@ -8,7 +8,7 @@ type Props = {
   children?: React.ReactNode
   images?: string[]
   imageCaptions?: string[]
-  imageLayout?: "stack" | "grid-2" | "grid-3" | "grid-1-2"
+  imageLayout?: "stack" | "grid-2" | "grid-3" | "grid-1-2" | "grid-2-1"
   imageMaxWidth?: string
   imageHeight?: string
   content?: string
