@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google"
 import "./globals.css"
 import Navbar from "@/components/Navbar"
 import PageTransition from "@/components/PageTransition"
+import { Analytics } from "@vercel/analytics/next"
 
 const poppins = Poppins({
   weight: ["400", "500", "600"],
@@ -32,6 +33,7 @@ export default function RootLayout({
         <main>
           <PageTransition>{children}</PageTransition>
         </main>
+        <Analytics />
       </body>
     </html>
   )
