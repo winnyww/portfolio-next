@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fafafa;
+  --foreground: #000000;
+  --accent-from: #3bf4fb;
+  --accent-to: #ccff33;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent-from: var(--accent-from);
+  --color-accent-to: var(--accent-to);
+  --font-sans: var(--font-poppins);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Soft mesh gradient background — pinned to viewport top-right */
+body::before {
+  content: "";
+  position: fixed;
+  top: -5vh;
+  right: -5vw;
+  width: 40vw;
+  height: 50vh;
+  background: radial-gradient(ellipse at 70% 30%, rgba(240, 150, 190, 0.3) 0%, rgba(190, 130, 220, 0.18) 50%, transparent 75%);
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+body > main {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* Gradient highlight — used on hero text */
+.text-highlight {
+  background: linear-gradient(120deg, var(--accent-from) 0%, var(--accent-to) 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 35%;
+  background-position: 0 80%;
+}
+
+/* Animated underline link */
+.link-accent {
+  background: linear-gradient(120deg, var(--accent-from) 0%, var(--accent-to) 100%);
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  background-position: 0% 100%;
+  transition: background-size 0.3s ease;
+}
+.link-accent:hover {
+  background-size: 100% 2px;
+}
+
+/* Project card hover overlay */
+.card-overlay {
+  background: linear-gradient(120deg, var(--accent-from) 0%, var(--accent-to) 100%);
+}
