@@ -150,6 +150,7 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
                     imageLayout={section.imageLayout}
                     sectionVideo={section.sectionVideo}
                     videos={section.videos}
+                    videoMaxWidth={section.videoMaxWidth}
                     imageMaxWidth={section.imageMaxWidth}
                   />
                 </AnimatedSection>

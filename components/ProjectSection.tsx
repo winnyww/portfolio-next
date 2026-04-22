@@ -14,6 +14,7 @@ type Props = {
   content?: string
   sectionVideo?: string
   videos?: string[]
+  videoMaxWidth?: string
 }
 
 function renderBoldText(text: string): React.ReactNode[] {
@@ -64,7 +65,7 @@ function renderContent(text: string): React.ReactNode[] {
 }
 
 // Renders content with #### subheadings interleaved with videos from the videos array
-function renderWithVideos(content: string, videos: string[]): React.ReactNode[] {
+function renderWithVideos(content: string, videos: string[], videoMaxWidth = "78%"): React.ReactNode[] {
   const parts = content.split(/\n(?=#### )/)
   let videoIndex = 0
   const nodes: React.ReactNode[] = []
@@ -88,7 +89,7 @@ function renderWithVideos(content: string, videos: string[]): React.ReactNode[] 
               <video
                 src={video}
                 className="rounded-[12px]"
-                style={{ width: "78%" }}
+                style={{ width: `min(100%, ${videoMaxWidth})` }}
                 controls
                 playsInline
               />
@@ -158,6 +159,7 @@ export default function ProjectSection({
   content,
   sectionVideo,
   videos,
+  videoMaxWidth,
 }: Props) {
   const hasVideos = videos && videos.length > 0
 
@@ -174,7 +176,7 @@ export default function ProjectSection({
       {(content || children) && (
         hasVideos && content ? (
           <div className="text-[16px] leading-[1.9] text-foreground/70 mb-8">
-            {renderWithVideos(content, videos)}
+            {renderWithVideos(content, videos, videoMaxWidth)}
           </div>
         ) : (
           <div className="text-[16px] leading-[1.9] text-foreground/70 space-y-5 max-w-3xl mb-8">

@@ -7,6 +7,7 @@ export type ProjectSection = {
   imageLayout?: "stack" | "grid-2" | "grid-3" | "grid-1-2" | "grid-2-1" // default: stack
   sectionVideo?: string    // single video path e.g. /videos/gem-demo-1.mp4
   videos?: string[]        // multiple videos interleaved with #### subheadings in content
+  videoMaxWidth?: string   // max-width for interleaved videos e.g. "400px"
   imageMaxWidth?: string   // max-width for stack images e.g. "500px"
   imageHeight?: string     // fixed height for grid images e.g. "280px"
 }
@@ -250,7 +251,7 @@ export const projects: Project[] = [
         heading: "Unintuitive Design",
         content:
           "The existing SF picnic rental website's design is outdated and overloaded with information, lacking a clear information architecture. This makes it difficult for users to locate call-to-action buttons or access detailed information about each picnic spot, significantly burdening those looking to make reservations.",
-        images: ["/images/sfpicnic-problem-1.png", "/images/sfpicnic-problem-2.png"],
+        images: ["/images/sfpicnic-design-1.png", "/images/sfpicnic-problem-2.png"],
         imageCaptions: ["Mobile Design Interface", "Website Design Interface"],
       },
       {
@@ -266,7 +267,7 @@ export const projects: Project[] = [
         heading: "Brainstorm & Competitor Analysis",
         content:
           "After identifying frictions and challenges in the current design, I initiated the brainstorming process with quick sketches and drew inspiration from other apps with similar functionalities.",
-        images: ["/images/sfpicnic-design-1.png", "/images/sfpicnic-design-2.png"],
+        images: ["/images/sfpicnic-problem-1.webp", "/images/sfpicnic-design-2.png"],
       },
       {
         label: "Solution",
@@ -278,6 +279,7 @@ export const projects: Project[] = [
           "/videos/sfpicnic-demo-2.mp4",
           "/videos/sfpicnic-demo-3.mp4",
         ],
+        videoMaxWidth: "360px",
       },
       {
         label: "Reflection",
