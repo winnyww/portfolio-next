@@ -86,12 +86,14 @@ export const projects: Project[] = [
       {
         label: "Final Design",
         heading: "",
+        content: "",
         images: ["/images/configure metrics.png"],
         imageMaxWidth: "500px",
       },
       {
         label: "Final Design",
         heading: "",
+        content: "",
         sectionVideo: "/videos/kpi-homepage.mp4",
       },
     ],
