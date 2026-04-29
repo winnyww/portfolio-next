@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380" fill="none">
+  <rect width="800" height="380" fill="#f5f5f5" rx="16"/>
+
+  <!-- Funnel bars -->
+  <!-- 30% bar -->
+  <rect x="80" y="60" width="640" height="80" rx="8" fill="url(#g1)" opacity="0.9"/>
+  <!-- 15% bar -->
+  <rect x="200" y="168" width="400" height="80" rx="8" fill="url(#g2)" opacity="0.75"/>
+  <!-- 4% bar -->
+  <rect x="310" y="276" width="180" height="80" rx="8" fill="url(#g3)" opacity="0.6"/>
+
+  <!-- Labels inside bars -->
+  <text x="400" y="107" text-anchor="middle" font-family="sans-serif" font-size="22" font-weight="700" fill="#000">30%</text>
+  <text x="400" y="215" text-anchor="middle" font-family="sans-serif" font-size="22" font-weight="700" fill="#000">15%</text>
+  <text x="400" y="323" text-anchor="middle" font-family="sans-serif" font-size="22" font-weight="700" fill="#000">4%</text>
+
+  <!-- Step labels right side -->
+  <text x="740" y="100" text-anchor="start" font-family="sans-serif" font-size="13" fill="#666">connect data source</text>
+  <text x="620" y="208" text-anchor="start" font-family="sans-serif" font-size="13" fill="#666">start asking questions</text>
+  <text x="505" y="316" text-anchor="start" font-family="sans-serif" font-size="13" fill="#666">create a dashboard</text>
+
+  <!-- Defs -->
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3bf4fb" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#ccff33" stop-opacity="0.5"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3bf4fb" stop-opacity="0.65"/>
+      <stop offset="100%" stop-color="#ccff33" stop-opacity="0.65"/>
+    </linearGradient>
+    <linearGradient id="g3" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3bf4fb" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#ccff33" stop-opacity="0.85"/>
+    </linearGradient>
+  </defs>
+</svg>

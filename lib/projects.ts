@@ -4,18 +4,23 @@ export type ProjectSection = {
   content: string     // supports **bold**, - bullets, #### subheadings via renderContent()
   images?: string[]
   imageCaptions?: string[] // parallel array to images
-  imageLayout?: "stack" | "grid-2" | "grid-3" | "grid-1-2" | "grid-2-1" // default: stack
+  imageLayout?: "stack" | "grid-2" | "grid-3" | "grid-1-2" | "grid-2-1" | "carousel" | "gallery" // default: stack
+  figmaEmbed?: string      // Figma prototype embed URL
   sectionVideo?: string    // single video path e.g. /videos/gem-demo-1.mp4
   videos?: string[]        // multiple videos interleaved with #### subheadings in content
   videoMaxWidth?: string   // max-width for interleaved videos e.g. "400px"
   imageMaxWidth?: string   // max-width for stack images e.g. "500px"
   imageHeight?: string     // fixed height for grid images e.g. "280px"
+  imageAlign?: "left" | "center" | "right"
+  quote?: string           // quote text for side-by-side quote+image layout
+  quoteAttribution?: string // attribution for quote
 }
 
 export type Project = {
   slug: string
   title: string
   comingSoon?: boolean
+  minimalLayout?: boolean
   subtitle: string
   description: string
   tags: string[]
@@ -33,36 +38,98 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "kpi-homepage",
-    comingSoon: true,
     title: "KPI Homepage",
-    videoUrl: "/videos/kpi-homepage.mp4",
-    subtitle: "Redesigning the homepage for a KPI dashboard platform",
-    description: "A homepage redesign focused on communicating value clearly and driving user engagement for a KPI tracking platform.",
-    tags: ["UX Design", "Dashboard", "B2B"],
+    subtitle: "Founding Product Designer @ Athenic AI",
+    description: "Athenic's homepage was the first thing enterprise users saw — but it wasn't doing its job. I redesigned it to surface the metrics that matter, reduce time-to-value, and give users a clear entry point into their data.",
+    tags: ["Product Design", "Dashboard", "B2B", "Data Visualization"],
     coverImage: "/images/kpi-cover.png",
-    timeline: "2024",
+    timeline: "3 months",
     projectType: "Product Design",
     tools: "Figma",
-    contribution: [
-      { role: "UX/UI Design", description: "End-to-end homepage design from research to high-fidelity prototype" },
+    team: [
+      "1 manager",
+      "3 engineers",
+      "1 designer (me)",
     ],
-    sections: [],
+    contribution: [
+      {
+        role: "User Research",
+        description: "Analyzed user drop-off data to identify where users were losing momentum before reaching the platform's core value.",
+      },
+      {
+        role: "Product Design",
+        description: "End-to-end redesign of the homepage — from problem framing to shipped high-fidelity designs.",
+      },
+    ],
+    sections: [
+      {
+        label: "Problem",
+        heading: "High Drop Rate Before Users Get Value",
+        content:
+          "__The drop rate is high before users get value by asking questions and generating data insights.__\n\nOnly a small fraction of users made it through the full setup flow:\n\n- **30%** connect to a data source\n- **15%** start asking questions\n- **4%** create a dashboard\n\nThe \"aha\" moment — getting real business insights — was buried too deep in the workflow. Users had to complete login, data source connection, dataset creation, knowledge graph configuration, and more before they could ask a single question.",
+        images: ["/images/drop rate.png"],
+      },
+      {
+        label: "North Star",
+        heading: "Bring the \"Aha\" Moment Early",
+        content:
+          "**How to generate business insights in the shortest time possible without spending too much time asking questions?**\n\n__The goal was to bring the \"aha\" moment as early as possible__ — reducing the steps between signing up and seeing real value from the platform.",
+        images: ["/images/aha moment too behind.png"],
+      },
+      {
+        label: "Final Design",
+        heading: "Auto-Magical KPI Homepage",
+        content:
+          "After connecting a data source and setting up business goals, __Athenic automatically creates a dashboard of your key metrics__ and shows positive or negative trends — no manual setup required.\n\nUsers land on a personalized homepage with their most important KPIs already surfaced, making the path from login to insight as short as possible.",
+        images: ["/images/kpi cards.png"],
+      },
+      {
+        label: "Final Design",
+        heading: "",
+        images: ["/images/configure metrics.png"],
+        imageMaxWidth: "500px",
+      },
+      {
+        label: "Final Design",
+        heading: "",
+        sectionVideo: "/videos/kpi-homepage.mp4",
+      },
+    ],
   },
   {
     slug: "ai-chat",
-    comingSoon: true,
+    minimalLayout: true,
     title: "AI Chat",
     subtitle: "Designing a conversational AI chat experience",
     description: "A conversational AI chat interface designed for intuitive, human-centered interactions.",
     tags: ["UX Design", "AI", "Conversational UI"],
-    coverImage: "/images/ai-chat-cover.png",
+    coverImage: "/images/AI chat cover.png",
     timeline: "2024",
     projectType: "Product Design",
     tools: "Figma",
     contribution: [
       { role: "UX/UI Design", description: "Designed the full chat experience from user flows to high-fidelity screens" },
     ],
-    sections: [],
+    sections: [
+      {
+        label: "Design",
+        heading: "Redesigned Chat Interface",
+        content: "",
+        images: ["/images/AI chat resign.png"],
+      },
+      {
+        label: "Design",
+        heading: "Knowledge Graph",
+        content: "",
+        images: ["/images/knowledge graph.png"],
+      },
+      {
+        label: "Design",
+        heading: "Chat UI",
+        content: "",
+        images: ["/images/chat ui.png"],
+      },
+    ],
   },
   {
     slug: "gem",
@@ -91,7 +158,7 @@ export const projects: Project[] = [
         label: "Problem",
         heading: "Challenges in User Interviews",
         content:
-          "User interviews, a common practice for every UX researcher, can be very challenging. In a short amount of time, researchers capture qualitative data through conversations, trying to understand their potential users' behaviors, preferences or lifestyle. The researchers need to master multiple skills to excel a user interview, which requires the most workload in the least time.",
+          "__User interviews, a common practice for every UX researcher, can be very challenging.__ In a short amount of time, researchers capture qualitative data through conversations, trying to understand their potential users' behaviors, preferences or lifestyle. The researchers need to master multiple skills to excel a user interview, which requires the most workload in the least time.",
         images: [
           "/images/gem-problem-1.jpg",
           "/images/gem-problem-2.jpg",
@@ -103,7 +170,7 @@ export const projects: Project[] = [
         label: "Research",
         heading: "Exploring Emotion AI Technology",
         content:
-          "I conducted research into Emotion AI technology to determine the potentials of utilizing it for user research. Emotion AI technology can detect, categorize and analyze expressional emotions from language used, speech prosody, facial expression, etc. The emotion data of user interviews can be very valuable for researchers to understand how to improve the research process.",
+          "I conducted research into Emotion AI technology to determine the potentials of utilizing it for user research. Emotion AI technology can detect, categorize and analyze expressional emotions from language used, speech prosody, facial expression, etc. __The emotion data of user interviews can be very valuable for researchers to understand how to improve the research process.__",
         images: ["/images/gem-research-1.jpg", "/images/gem-research-2.jpg"],
       },
       {
@@ -124,6 +191,7 @@ export const projects: Project[] = [
           "/videos/gem-demo-3.mp4",
           "/videos/gem-demo-4.mp4",
         ],
+        videoMaxWidth: "760px",
       },
     ],
   },
@@ -161,13 +229,13 @@ export const projects: Project[] = [
         label: "Introduction",
         heading: "Improving Onboarding at Athenic AI",
         content:
-          "During a summer internship at Athenic AI, I joined as the sole Product Designer to improve the onboarding experience for a natural-language data analytics platform. The product targets business owners without a technical background, letting them ask data-related questions and receive AI-generated insights in seconds. My role was to identify friction points in the current experience and design solutions to reduce the steep learning curve for new users.",
+          "During a summer internship at Athenic AI, I joined as the sole Product Designer to improve the onboarding experience for a natural-language data analytics platform. The product targets business owners without a technical background, letting them ask data-related questions and receive AI-generated insights in seconds. My role was to __identify friction points in the current experience and design solutions to reduce the steep learning curve for new users.__",
       },
       {
         label: "Problem",
         heading: "Steep Learning Curve",
         content:
-          "Athenic AI harnesses the potential of AI technology for data analysis, catering to business owners without a technical background. Users can simply enter their data-related questions, and Athenic AI delivers insights within seconds. However, for new users, navigating an AI tool can be challenging. As the Product Designer, my objective is to identify and understand the friction points in the current user experience and devise design solutions to enhance its user-friendliness.",
+          "Athenic AI harnesses the potential of AI technology for data analysis, catering to business owners without a technical background. Users can simply enter their data-related questions, and Athenic AI delivers insights within seconds. __However, for new users, navigating an AI tool can be challenging.__ As the Product Designer, my objective is to identify and understand the friction points in the current user experience and devise design solutions to enhance its user-friendliness.",
         images: ["/images/athenic-problem-1.png", "/images/athenic-problem-2.png"],
         imageCaptions: ["Athenic Interface #1: asking questions to get data insights", "Athenic Interface #2: AI-generated data visualization dashboard"],
       },
@@ -175,9 +243,17 @@ export const projects: Project[] = [
         label: "Research",
         heading: "Understanding User Experience & Friction Points",
         content:
-          "Athenic AI collects recordings of user sessions for UX analysis. I reviewed over 100 sessions and defined the user journey in steps, from logging in to creating a project and generating data visualization. Based on my observations, most users only complete the first couple of steps in the journey, getting stuck due to the long learning curve.\n\nAfter understanding where the users are getting stuck, I further dug deeper into which specific segments or interfaces are causing the friction. And I started to collect ideas of designing solutions to improve the user experience. After presenting the ideas to the cross-functional team, we reached an agreement on what changes Athenic platform should have.",
+          "Athenic AI collects recordings of user sessions for UX analysis. I reviewed over 100 sessions and defined the user journey in steps, from logging in to creating a project and generating data visualization. Based on my observations, __most users only complete the first couple of steps in the journey, getting stuck due to the long learning curve.__",
         images: [
           "/images/athenic-research-steps.png",
+        ],
+      },
+      {
+        label: "Research",
+        heading: "Identify Friction in specific Segment",
+        content:
+          "After understanding where the users are getting stuck, I further dug deeper into which specific segments or interfaces are causing the friction. And I started to collect ideas of designing solutions to improve the user experience. After presenting the ideas to the cross-functional team, we reached an agreement on what changes Athenic platform should have.",
+        images: [
           "/images/athenic-research-diagram.png",
           "/images/athenic-research-3.png",
           "/images/athenic-research-4.png",
@@ -188,24 +264,40 @@ export const projects: Project[] = [
         label: "Ideation",
         heading: "Wireframing a New Layout",
         content:
-          "Based on the insights I gathered from session analysis and brainstorming, I created low-fi wireframe of the platform focusing on a layout reorganization. In the new layout, each individual page are clearly structured in the sidebar on the left. Inside each page, the users can find helpful guidances which are designed for new users to get started.\n\n- Data Source Page\n- Select Data Connector Page\n- Configure Data Source Page\n- Choose Template Page I\n- Choose Temple Page II\n- Project Page",
+          "Based on the insights I gathered from session analysis and brainstorming, I created __low-fi wireframe of the platform focusing on a layout reorganization__. In the new layout, each individual page are clearly structured in the sidebar on the left. Inside each page, the users can find helpful guidances which are designed for new users to get started.",
         images: [
-          "/images/athenic-design-1.png",
-          "/images/athenic-design-2.png",
-          "/images/athenic-design-3.png",
+          "/images/athenic-lowfi-data-source.webp",
+          "/images/athenic-lowfi-select-data-connector.webp",
+          "/images/athenic-lowfi-configure-data-source.webp",
+          "/images/athenic-lowfi-choose-template-i.webp",
+          "/images/athenic-lowfi-choose-template-ii.webp",
+          "/images/athenic-lowfi-project-page.webp",
         ],
+        imageCaptions: [
+          "Data Source Page",
+          "Select Data Connector Page",
+          "Configure Data Source Page",
+          "Choose Template Page I",
+          "Choose Template Page II",
+          "Project Page",
+        ],
+        imageLayout: "carousel",
       },
       {
         label: "Final Design",
         heading: "Redesigned Interface",
         content:
           "Furthermore, I created prototypes for new design and features. The new designs focus on providing more guidance for users to reduce the learning curve, get the desired data insights and become a loyal customer.",
+        figmaEmbed: "https://www.figma.com/proto/PBWNLwtrYQ5CcfMF44QZEq/winnyw.com?kind=proto&node-id=19-2182&page-id=19%3A2181&scaling=scale-down-width&t=nKvHVCTWOrvPYXNy-1&type=design&viewport=518%2C450%2C0.27",
         images: [
+          "/images/athenic-design-1.png",
+          "/images/athenic-design-2.png",
+          "/images/athenic-design-3.png",
           "/images/athenic-design-4.png",
           "/images/athenic-design-5.png",
           "/images/athenic-design-6.png",
         ],
-        imageCaptions: ["Projects Page", "Dashboards Page", "Getting Started Page", "Choosing Mode/Template Page", "Selecting Data Table/Columns UI", "Modal UI Design"],
+        imageCaptions: ["Project Page", "Dashboard Page", "Getting Started Page", "Choosing Mode/Template Page", "Selecting Data Table/Columns UIs", "Modal UI Design"],
       },
       {
         label: "Takeaways",
@@ -244,7 +336,7 @@ export const projects: Project[] = [
         label: "Introduction",
         heading: "Redesigning an Outdated Booking Site",
         content:
-          "This is a class project from my Product Design course at CCA, where I redesigned the San Francisco Recreation and Park Department's picnic rental website. The existing site is outdated, visually overwhelming, and difficult to navigate — making it hard for users to find, evaluate, and book picnic spots. My goal was to redesign the experience in mobile format, focusing on clarity, usability, and conversion.",
+          "This is a class project from my Product Design course at CCA, where I redesigned the San Francisco Recreation and Park Department's picnic rental website. The existing site is outdated, visually overwhelming, and difficult to navigate — making it hard for users to find, evaluate, and book picnic spots. __My goal was to redesign the experience in mobile format, focusing on clarity, usability, and conversion.__",
       },
       {
         label: "Problem",
@@ -326,20 +418,20 @@ export const projects: Project[] = [
         label: "Introduction",
         heading: "Partnership with Electrolux",
         content:
-          "This semester-long academic partnership with Electrolux gave our cross-functional team a unique opportunity to tackle refrigerator sustainability at scale. Electrolux, a global home appliance manufacturer, is committed to reducing the environmental footprint of its products. Our team explored two angles: sustainable materials as alternatives to plastic, and ways to empower customers to make more eco-conscious purchasing decisions.",
+          "This semester-long academic partnership with Electrolux gave our cross-functional team a unique opportunity to tackle refrigerator sustainability at scale. Electrolux, a global home appliance manufacturer, is committed to reducing the environmental footprint of its products. Our team explored two angles: sustainable materials as alternatives to plastic, and ways to __empower customers to make more eco-conscious purchasing decisions.__",
       },
       {
         label: "Problem",
-        heading: "Refrigerators & Plastic Waste",
+        heading: "Enormous Plastic Waste",
         content:
-          "Electrolux is committed to environmental protection and reducing the carbon footprint of its products. Refrigerators, ubiquitous in households, contribute significantly to plastic waste, posing a substantial challenge due to their size, complex disposal process, and hazardous materials.",
+          "Electrolux is committed to environmental protection and reducing the carbon footprint of its products. Refrigerators, ubiquitous in households, contribute significantly to plastic waste, posing a substantial challenge due to their size, complex disposal process, and hazardous materials. Consequently, Electrolux approached us to __identify the most effective strategies for minimizing plastic usage,__ considering both material selection and consumer behavior.",
         images: ["/images/electrolux-problem-1.jpg", "/images/electrolux-problem-2.jpg"],
       },
       {
         label: "Research",
         heading: "Expert Interviews on Sustainable Materials",
         content:
-          "In the initial phase of our research, we concentrated on evaluating the sustainability of various materials used in refrigerator construction. To mitigate plastic waste, we explored the feasibility of substituting plastic with more eco-friendly alternatives such as aluminum, steel, or glass. We conducted expert interviews with recycling professionals, partnering with Recology.",
+          "__In the initial phase of our research, we concentrated on evaluating the sustainability of various materials used in refrigerator construction.__ To mitigate plastic waste, we explored the feasibility of substituting plastic with more eco-friendly alternatives such as aluminum, steel, or glass. We conducted expert interviews with recycling professionals, partnering with Recology.",
         images: [
           "/images/electrolux-materials-1.jpg",
           "/images/electrolux-materials-2.jpg",
@@ -352,7 +444,7 @@ export const projects: Project[] = [
         label: "Survey",
         heading: "Customer Behavior Study",
         content:
-          "Having gained a thorough understanding of the materials, we shifted our focus to the consumer perspective, recognizing that purchasing power ultimately resides with the customers. We questioned which materials customers would prefer, what factors they consider when purchasing a refrigerator, and their interpretation of sustainability. To delve into their preferences and how these influence their purchasing decisions, we crafted a survey using Qualtrics to gather data.\n\nSurvey Structure: a combination of yes/no, open questions, ranking, rating exercises",
+          "Having gained a thorough understanding of the materials, we shifted our focus to the consumer perspective, recognizing that purchasing power ultimately resides with the customers. We questioned which materials customers would prefer, what factors they consider when purchasing a refrigerator, and their interpretation of sustainability. __To delve into their preferences and how these influence their purchasing decisions, we crafted a survey using Qualtrics to gather data.__\n\nSurvey Structure: a combination of yes/no, open questions, ranking, rating exercises",
         images: [
           "/images/electrolux-survey-1.jpg",
           "/images/electrolux-survey-2.png",
@@ -366,13 +458,14 @@ export const projects: Project[] = [
         label: "Concept",
         heading: "DIY Sustainability Refrigerator",
         content:
-          "Drawing inspiration from a Samsung initiative, we developed a prototype for a \"DIY Your Own Refrigerator\" concept aimed at empowering Electrolux customers to enhance the sustainability of their refrigerators. This interactive design allows customers to understand the environmental impact of each choice they make. They are provided with a sustainability score based on their selections, including the model, materials, add-on services, and more, encouraging more environmentally conscious decisions.",
+          "Drawing inspiration from a Samsung initiative, we developed a prototype for a \"DIY Your Own Refrigerator\" concept aimed at empowering Electrolux customers to enhance the sustainability of their refrigerators. __This interactive design allows customers to understand the environmental impact of each choice they make.__ They are provided with a sustainability score based on their selections, including the model, materials, add-on services, and more, encouraging more environmentally conscious decisions.",
         images: [
           "/images/electrolux-design-1.jpg",
           "/images/electrolux-design-2.png",
           "/images/electrolux-design-3.jpg",
         ],
         imageCaptions: ["", "Documentation of Semester-long Research", "Final Presentation & Handoff to Client"],
+        sectionVideo: "/videos/electrolux-demo.mp4",
       },
       {
         label: "Reflection",

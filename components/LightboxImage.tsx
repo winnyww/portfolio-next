@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { createPortal } from "react-dom"
 import Image from "next/image"
 
 type Props = {
@@ -32,19 +33,17 @@ export default function LightboxImage({ src, alt, sizes, objectFit }: Props) {
         onClick={() => setOpen(true)}
       />
 
-      {open && (
+      {open && typeof document !== "undefined" && createPortal(
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 md:p-10"
+          className="fixed inset-0 z-[9998] flex items-center justify-center bg-black/85 backdrop-blur-sm p-6 md:p-12"
           onClick={() => setOpen(false)}
         >
-          <div className="relative max-w-[90vw] max-h-[90vh]" onClick={e => e.stopPropagation()}>
-            <Image
+          <div className="relative" style={{ maxWidth: "min(92vw, 1400px)", maxHeight: "92vh" }} onClick={e => e.stopPropagation()}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src={src}
               alt={alt}
-              width={0}
-              height={0}
-              sizes="90vw"
-              style={{ width: "auto", height: "auto", maxWidth: "90vw", maxHeight: "90vh", display: "block", borderRadius: "12px" }}
+              style={{ width: "auto", height: "auto", maxWidth: "min(92vw, 1400px)", maxHeight: "92vh", display: "block", borderRadius: "12px", objectFit: "contain" }}
             />
             <button
               onClick={() => setOpen(false)}
@@ -53,7 +52,8 @@ export default function LightboxImage({ src, alt, sizes, objectFit }: Props) {
               ×
             </button>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   )

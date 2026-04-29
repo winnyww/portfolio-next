@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 340" fill="none">
+  <rect width="900" height="340" fill="#f5f5f5" rx="16"/>
+
+  <!-- LEFT: Old flow -->
+  <text x="180" y="36" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="600" fill="#999" letter-spacing="2">BEFORE</text>
+
+  <!-- Steps old -->
+  <rect x="40" y="52" width="280" height="42" rx="8" fill="#e8e8e8"/>
+  <text x="180" y="78" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#333">1 — Connect data source</text>
+
+  <line x1="180" y1="94" x2="180" y2="110" stroke="#ccc" stroke-width="2" stroke-dasharray="4 3"/>
+
+  <rect x="40" y="110" width="280" height="42" rx="8" fill="#e8e8e8"/>
+  <text x="180" y="136" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#333">2 — Configure connection</text>
+
+  <line x1="180" y1="152" x2="180" y2="168" stroke="#ccc" stroke-width="2" stroke-dasharray="4 3"/>
+
+  <rect x="40" y="168" width="280" height="42" rx="8" fill="#e8e8e8"/>
+  <text x="180" y="194" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#333">3 — Learn to ask questions</text>
+
+  <line x1="180" y1="210" x2="180" y2="226" stroke="#ccc" stroke-width="2" stroke-dasharray="4 3"/>
+
+  <rect x="40" y="226" width="280" height="42" rx="8" fill="#e8e8e8"/>
+  <text x="180" y="252" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#333">4 — Iterate on queries</text>
+
+  <line x1="180" y1="268" x2="180" y2="284" stroke="#ccc" stroke-width="2" stroke-dasharray="4 3"/>
+
+  <rect x="40" y="284" width="280" height="42" rx="8" fill="#ddd"/>
+  <text x="180" y="310" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#888">5 — See an insight 😓</text>
+
+  <!-- Divider -->
+  <line x1="450" y1="20" x2="450" y2="320" stroke="#ddd" stroke-width="1.5"/>
+
+  <!-- RIGHT: New flow -->
+  <text x="680" y="36" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="600" fill="#999" letter-spacing="2">AFTER</text>
+
+  <rect x="540" y="52" width="280" height="42" rx="8" fill="url(#gstep1)"/>
+  <text x="680" y="78" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#000">1 — Connect data source</text>
+
+  <line x1="680" y1="94" x2="680" y2="126" stroke="#aaa" stroke-width="2" stroke-dasharray="4 3"/>
+
+  <rect x="540" y="126" width="280" height="42" rx="8" fill="url(#gstep2)"/>
+  <text x="680" y="152" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#000">2 — Set business goals</text>
+
+  <line x1="680" y1="168" x2="680" y2="200" stroke="#aaa" stroke-width="2" stroke-dasharray="4 3"/>
+
+  <!-- Aha moment callout -->
+  <rect x="540" y="200" width="280" height="58" rx="10" fill="url(#gaha)"/>
+  <text x="680" y="228" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#000">✦  KPI dashboard auto-generated</text>
+  <text x="680" y="248" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#333">aha moment, no questions needed</text>
+
+  <defs>
+    <linearGradient id="gstep1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3bf4fb" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#ccff33" stop-opacity="0.25"/>
+    </linearGradient>
+    <linearGradient id="gstep2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3bf4fb" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#ccff33" stop-opacity="0.25"/>
+    </linearGradient>
+    <linearGradient id="gaha" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3bf4fb" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#ccff33" stop-opacity="0.55"/>
+    </linearGradient>
+  </defs>
+</svg>

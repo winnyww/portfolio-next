@@ -1,19 +1,19 @@
 import { notFound } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
-import { exploreProjects } from "@/lib/explore-projects"
+import { workProjects } from "@/lib/work-projects"
 import ProjectSection from "@/components/ProjectSection"
 import AnimatedSection from "@/components/AnimatedSection"
 import ProjectSideNav from "@/components/ProjectSideNav"
 import CircleHeading from "@/components/CircleHeading"
 
 export function generateStaticParams() {
-  return exploreProjects.map((p) => ({ slug: p.slug }))
+  return workProjects.map((p) => ({ slug: p.slug }))
 }
 
-export default async function ExploreProjectPage(props: PageProps<"/explore/[slug]">) {
+export default async function WorkProjectPage(props: PageProps<"/work/[slug]">) {
   const { slug } = await props.params
-  const project = exploreProjects.find((p) => p.slug === slug)
+  const project = workProjects.find((p) => p.slug === slug)
   if (!project) notFound()
 
   const seenLabels = new Set<string>()
@@ -97,18 +97,6 @@ export default async function ExploreProjectPage(props: PageProps<"/explore/[slu
                     <p className="text-[15px] leading-relaxed break-words">{project.team.join(", ")}</p>
                   </div>
                 )}
-                {project.mentors && project.mentors.length > 0 && (
-                  <div className="flex-1 min-w-0" style={{ maxWidth: "340px" }}>
-                    <p className="text-[10px] uppercase tracking-widest text-foreground/40 mb-2">Mentors</p>
-                    <p className="text-[15px] leading-relaxed break-words">{project.mentors.join(", ")}</p>
-                  </div>
-                )}
-                {project.achievement && (
-                  <div className="flex-1 min-w-0" style={{ maxWidth: "340px" }}>
-                    <p className="text-[10px] uppercase tracking-widest text-foreground/40 mb-2">Achievement</p>
-                    <p className="text-[15px] leading-relaxed break-words"><CircleHeading text={project.achievement} /></p>
-                  </div>
-                )}
               </div>
             </div>
           </AnimatedSection>
@@ -127,6 +115,19 @@ export default async function ExploreProjectPage(props: PageProps<"/explore/[slu
                     </p>
                   ))}
                 </div>
+              </div>
+            </AnimatedSection>
+          )}
+
+          {/* Video embed */}
+          {project.videoUrl && (
+            <AnimatedSection>
+              <div className="mb-12">
+                {project.videoUrl.startsWith("/videos/") ? (
+                  <video src={project.videoUrl} className="rounded-[16px]" style={{ width: "100%", height: "auto", display: "block" }} controls playsInline />
+                ) : (
+                  <iframe src={project.videoUrl} className="w-full rounded-[12px]" style={{ height: "50vh" }} allow="autoplay; fullscreen; picture-in-picture" allowFullScreen />
+                )}
               </div>
             </AnimatedSection>
           )}
@@ -151,11 +152,8 @@ export default async function ExploreProjectPage(props: PageProps<"/explore/[slu
                     figmaEmbed={section.figmaEmbed}
                     sectionVideo={section.sectionVideo}
                     videos={section.videos}
+                    videoMaxWidth={section.videoMaxWidth}
                     imageMaxWidth={section.imageMaxWidth}
-                    imageHeight={section.imageHeight}
-                    imageAlign={section.imageAlign}
-                    quote={section.quote}
-                    quoteAttribution={section.quoteAttribution}
                   />
                 </AnimatedSection>
               )
@@ -164,8 +162,8 @@ export default async function ExploreProjectPage(props: PageProps<"/explore/[slu
 
           {/* Back link */}
           <div className="mt-16 pt-8 border-t border-foreground/10">
-            <Link href="/explore" className="text-[13px] text-foreground/40 hover:text-foreground/70 transition-colors">
-              ← Back to explore
+            <Link href="/" className="text-[13px] text-foreground/40 hover:text-foreground/70 transition-colors">
+              ← Back to work
             </Link>
           </div>
         </div>

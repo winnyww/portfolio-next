@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Poppins } from "next/font/google"
 import "./globals.css"
 import Navbar from "@/components/Navbar"
+import CursorGlow from "@/components/CursorGlow"
 import PageTransition from "@/components/PageTransition"
 import { Analytics } from "@vercel/analytics/next"
 
@@ -29,6 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${poppins.variable} antialiased`}>
       <body className="min-h-screen bg-background text-foreground">
+        <CursorGlow />
         <Navbar />
         <main>
           <PageTransition>{children}</PageTransition>

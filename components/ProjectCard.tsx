@@ -15,15 +15,11 @@ export default function ProjectCard({ project }: { project: Project }) {
           sizes="(max-width: 768px) 100vw, 50vw"
         />
         {/* Badge */}
-        {project.comingSoon ? (
+        {project.comingSoon && (
           <div className="absolute bottom-4 left-4">
             <div className="bg-foreground text-background text-[13px] font-medium px-3 py-1 rounded-full shadow-sm">
               Coming Soon
             </div>
-          </div>
-        ) : project.tags[0] && (
-          <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm text-[13px] font-medium px-3 py-1 rounded-full text-foreground/70 shadow-sm">
-            {project.tags[0]}
           </div>
         )}
       </div>

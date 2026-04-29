@@ -5,6 +5,7 @@ import { projects } from "@/lib/projects"
 import ProjectSection from "@/components/ProjectSection"
 import AnimatedSection from "@/components/AnimatedSection"
 import ProjectSideNav from "@/components/ProjectSideNav"
+import CircleHeading from "@/components/CircleHeading"
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }))
@@ -26,10 +27,13 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
 
   return (
     <div className="min-h-screen pt-28 pb-24">
-      <div className="w-[90%] md:w-[80%] mx-auto flex gap-12 md:gap-16">
+      <div className="w-[90%] md:w-[70%] mx-auto flex gap-12 md:gap-16">
 
         {/* Sticky left nav */}
-        <ProjectSideNav sections={navSections} />
+        {project.minimalLayout
+          ? <div className="hidden md:block w-[160px] shrink-0" />
+          : <ProjectSideNav sections={navSections} />
+        }
 
         {/* Main content */}
         <div className="flex-1 min-w-0">
@@ -40,8 +44,12 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
               <h1 className="text-[36px] md:text-[52px] font-bold leading-[1.1] tracking-tight mb-3">
                 {project.title}
               </h1>
-              <p className="text-[13px] text-foreground/40 mb-3">{project.subtitle}</p>
-              <p className="text-[15px] text-foreground/60 leading-[1.8] max-w-[80%]">{project.description}</p>
+              {project.tags && project.tags.length > 0 && (
+                <p className="text-[15px] italic mb-4" style={{ color: "#ff4d6d" }}>
+                  {project.tags.map(t => `#${t}`).join(" ")}
+                </p>
+              )}
+              <p className="text-[16px] text-foreground/60 leading-[1.8] max-w-[80%]">{project.description}</p>
             </div>
           </AnimatedSection>
 
@@ -63,39 +71,48 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
           )}
 
           {/* Horizontal metadata row */}
-          {!project.comingSoon && <AnimatedSection>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-x-24 gap-y-6 py-6 mb-6 md:w-[80%]">
-              <div>
-                <p className="text-[10px] uppercase tracking-widest text-foreground/40 mb-2">Timeline</p>
-                <p className="text-[13px] leading-relaxed">{project.timeline}</p>
-              </div>
-              {(project.projectType || project.collaborationType) && (
-                <div>
-                  <p className="text-[10px] uppercase tracking-widest text-foreground/40 mb-2">{project.projectType ? "Project Type" : "Type"}</p>
-                  <p className="text-[13px] leading-relaxed">{project.projectType ?? project.collaborationType}</p>
+          {!project.minimalLayout && !project.comingSoon && <AnimatedSection>
+            <div className="py-6 mb-6 flex flex-col" style={{ gap: "24px" }}>
+              {/* Row 1: Timeline | Project Type | My Role */}
+              <div className="flex w-full" style={{ gap: "40px" }}>
+                <div className="flex-1 min-w-0">
+                  <p className="text-[10px] uppercase tracking-widest text-foreground/40 mb-2">Timeline</p>
+                  <p className="text-[15px] leading-relaxed break-words">{project.timeline}</p>
                 </div>
-              )}
-              <div style={{ maxWidth: "400px" }}>
-                <p className="text-[10px] uppercase tracking-widest text-foreground/40 mb-2">Tools</p>
-                <p className="text-[13px] leading-relaxed">{project.tools}</p>
-              </div>
-              {project.team && project.team.length > 0 && (
-                <div style={{ maxWidth: "400px" }}>
-                  <p className="text-[10px] uppercase tracking-widest text-foreground/40 mb-2">Team</p>
-                  <p className="text-[13px] leading-relaxed">{project.team.join(", ")}</p>
+                {(project.projectType || project.collaborationType) && (
+                  <div className="flex-1 min-w-0">
+                    <p className="text-[10px] uppercase tracking-widest text-foreground/40 mb-2">{project.projectType ? "Project Type" : "Type"}</p>
+                    <p className="text-[15px] leading-relaxed break-words">{project.projectType ?? project.collaborationType}</p>
+                  </div>
+                )}
+                <div className="flex-1 min-w-0">
+                  <p className="text-[10px] uppercase tracking-widest text-foreground/40 mb-2">My Role</p>
+                  <p className="text-[15px] leading-relaxed break-words">{project.contribution.map(c => c.role).join(", ")}</p>
                 </div>
-              )}
-              <div style={{ maxWidth: "400px" }}>
-                <p className="text-[10px] uppercase tracking-widest text-foreground/40 mb-2">My Role</p>
-                <p className="text-[13px] leading-relaxed">{project.contribution.map(c => c.role).join(", ")}</p>
+              </div>
+              {/* Row 2: Tools + Team */}
+              <div className="flex w-full" style={{ gap: "40px" }}>
+                <div className="flex-1 min-w-0" style={{ maxWidth: "340px" }}>
+                  <p className="text-[10px] uppercase tracking-widest text-foreground/40 mb-2">Tools</p>
+                  <p className="text-[15px] leading-relaxed break-words">{project.tools}</p>
+                </div>
+                {project.team && project.team.length > 0 && (
+                  <div className="flex-1 min-w-0" style={{ maxWidth: "340px" }}>
+                    <p className="text-[10px] uppercase tracking-widest text-foreground/40 mb-2">Team</p>
+                    <p className="text-[15px] leading-relaxed break-words">{project.team.join(", ")}</p>
+                  </div>
+                )}
               </div>
             </div>
           </AnimatedSection>}
 
-          {/* Description section */}
-          {!project.comingSoon && project.contribution.some(c => c.description) && (
+          {/* My Contribution */}
+          {!project.minimalLayout && !project.comingSoon && project.contribution.some(c => c.description) && (
             <AnimatedSection>
               <div className="py-10 border-t border-foreground/10">
+                <h3 className="text-[18px] font-semibold mb-6">
+                  <CircleHeading text="My Contribution" />
+                </h3>
                 <div className="text-[15px] leading-[1.9] text-foreground/70 space-y-4 max-w-2xl">
                   {project.contribution.map((c, i) => c.description && (
                     <p key={i}>
@@ -108,7 +125,7 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
           )}
 
           {/* Video embed */}
-          {project.videoUrl && (
+          {!project.minimalLayout && project.videoUrl && (
             <AnimatedSection>
               <div className="mb-12">
                 {project.videoUrl.startsWith("/videos/") ? (
@@ -143,11 +160,13 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
                     id={`section-${i}`}
                     label={section.label}
                     showLabel={isFirst}
+                    hideBorder={project.minimalLayout}
                     heading={section.heading}
                     content={section.content}
                     images={section.images}
                     imageCaptions={section.imageCaptions}
                     imageLayout={section.imageLayout}
+                    figmaEmbed={section.figmaEmbed}
                     sectionVideo={section.sectionVideo}
                     videos={section.videos}
                     videoMaxWidth={section.videoMaxWidth}
@@ -159,7 +178,7 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
           })()}
 
           {/* Back link */}
-          <div className="mt-16 pt-8 border-t border-foreground/10">
+          <div className={`mt-16 pt-8 ${!project.minimalLayout ? "border-t border-foreground/10" : ""}`}>
             <Link href="/" className="text-[13px] text-foreground/40 hover:text-foreground/70 transition-colors">
               ← Back to work
             </Link>
