@@ -343,7 +343,7 @@ export const exploreProjects: ExploreProject[] = [
           "Then I researched relevant art projects and practices, either they're serving a similar purpose like contextualization and reflection, or their method is inspirational on __how to create such a reflective experience, for example, by looking into a mirror.__",
         quote: "a person or group of people can suffer real damage, real distortion if the people or society around them mirror back to them a confining or demeaning or contemptible picture of themselves",
         quoteAttribution: "Charles Taylor. (1992). p25\n\"Multiculturalism and 'the politics of recognition'\"",
-        images: ["/images/mirroring-mirror.jpg"],
+        images: ["/images/related art.jpg"],
         imageCaptions: ["Sarah Howorka. (2015). \"average face mirror\""],
         imageLayout: "stack",
       },
