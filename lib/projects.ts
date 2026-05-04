@@ -39,7 +39,7 @@ export const projects: Project[] = [
   {
     slug: "kpi-homepage",
     title: "KPI Homepage",
-    subtitle: "Founding Product Designer @ Athenic AI",
+    subtitle: "Auto-magical KPI tracking powered by Athenic's Semantic Layer",
     description: "Athenic's homepage was the first thing enterprise users saw — but it wasn't doing its job. I redesigned it to surface the metrics that matter, reduce time-to-value, and give users a clear entry point into their data.",
     tags: ["Product Design", "Dashboard", "B2B", "Data Visualization"],
     coverImage: "/images/kpi-cover.png",

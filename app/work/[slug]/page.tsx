@@ -46,7 +46,7 @@ export default async function WorkProjectPage(props: PageProps<"/work/[slug]">) 
                   {project.tags.map(t => `#${t}`).join(" ")}
                 </p>
               )}
-              <p className="text-[16px] text-foreground/60 leading-[1.8] max-w-[80%]">{project.description}</p>
+              <p className="text-[16px] text-foreground/60 leading-[1.8] max-w-full md:max-w-[80%]">{project.description}</p>
             </div>
           </AnimatedSection>
 
@@ -70,29 +70,29 @@ export default async function WorkProjectPage(props: PageProps<"/work/[slug]">) 
           {/* Horizontal metadata row */}
           <AnimatedSection>
             <div className="py-6 mb-6 flex flex-col" style={{ gap: "24px" }}>
-              <div className="flex w-full" style={{ gap: "40px" }}>
-                <div className="flex-1 min-w-0">
+              <div className="grid grid-cols-2 md:flex md:flex-row w-full gap-6 md:gap-10">
+                <div className="min-w-0 md:flex-1">
                   <p className="text-[10px] uppercase tracking-widest text-foreground/40 mb-2">Timeline</p>
                   <p className="text-[15px] leading-relaxed break-words">{project.timeline}</p>
                 </div>
                 {project.projectType && (
-                  <div className="flex-1 min-w-0">
+                  <div className="min-w-0 md:flex-1">
                     <p className="text-[10px] uppercase tracking-widest text-foreground/40 mb-2">Project Type</p>
                     <p className="text-[15px] leading-relaxed break-words">{project.projectType}</p>
                   </div>
                 )}
-                <div className="flex-1 min-w-0">
+                <div className={`min-w-0 md:flex-1 ${project.projectType ? "col-span-2 md:col-span-1" : ""}`}>
                   <p className="text-[10px] uppercase tracking-widest text-foreground/40 mb-2">My Role</p>
                   <p className="text-[15px] leading-relaxed break-words">{project.contribution.map(c => c.role).join(", ")}</p>
                 </div>
               </div>
-              <div className="flex w-full" style={{ gap: "40px" }}>
-                <div className="flex-1 min-w-0" style={{ maxWidth: "340px" }}>
+              <div className="grid grid-cols-2 md:flex md:flex-row w-full gap-6 md:gap-10">
+                <div className={`min-w-0 md:flex-1 md:max-w-[340px] ${!project.team || project.team.length === 0 ? "col-span-2 md:col-span-1" : ""}`}>
                   <p className="text-[10px] uppercase tracking-widest text-foreground/40 mb-2">Tools</p>
                   <p className="text-[15px] leading-relaxed break-words">{project.tools}</p>
                 </div>
                 {project.team && project.team.length > 0 && (
-                  <div className="flex-1 min-w-0" style={{ maxWidth: "340px" }}>
+                  <div className="min-w-0 md:flex-1 md:max-w-[340px]">
                     <p className="text-[10px] uppercase tracking-widest text-foreground/40 mb-2">Team</p>
                     <p className="text-[15px] leading-relaxed break-words">{project.team.join(", ")}</p>
                   </div>
