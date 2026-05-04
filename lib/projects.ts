@@ -33,6 +33,7 @@ export type Project = {
   team?: string[]
   contribution: { role: string; description?: string }[]
   sections: ProjectSection[]
+  contactNote?: string
 }
 
 export const projects: Project[] = [
@@ -97,6 +98,7 @@ export const projects: Project[] = [
         sectionVideo: "/videos/kpi-homepage.mp4",
       },
     ],
+    contactNote: "For a more detailed walkthrough of this project, contact me at pw1101@berkeley.edu",
   },
   {
     slug: "ai-chat",
@@ -132,6 +134,7 @@ export const projects: Project[] = [
         images: ["/images/chat ui.png"],
       },
     ],
+    contactNote: "For a more detailed walkthrough of this project, contact me at pw1101@berkeley.edu",
   },
   {
     slug: "gem",

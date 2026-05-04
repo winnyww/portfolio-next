@@ -178,8 +178,19 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
             })
           })()}
 
+          {/* Contact note */}
+          {project.contactNote && (
+            <div className="mt-16 rounded-[14px] border border-foreground/10 bg-foreground/[0.03] px-6 py-5">
+              <p className="text-[12px] uppercase tracking-widest text-foreground/40 mb-2">Short Overview</p>
+              <p className="text-[15px] text-foreground/70 leading-relaxed">
+                This page is a brief overview of the project. For a more detailed walkthrough,{" "}
+                <a href="mailto:pw1101@berkeley.edu" className="text-foreground underline underline-offset-2 hover:text-foreground/70 transition-colors">contact me</a>.
+              </p>
+            </div>
+          )}
+
           {/* Back link */}
-          <div className={`mt-16 pt-8 ${!project.minimalLayout ? "border-t border-foreground/10" : ""}`}>
+          <div className={`mt-8 ${project.contactNote ? "" : "mt-16 pt-8 " + (!project.minimalLayout ? "border-t border-foreground/10" : "")}`}>
             <Link href="/" className="text-[13px] text-foreground/40 hover:text-foreground/70 transition-colors">
               ← Back to work
             </Link>

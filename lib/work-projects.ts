@@ -69,5 +69,6 @@ export const workProjects: Project[] = [
           "Users adopted Key Terms across projects. The same question that previously failed now returned the correct answer — because users could see and use the right terminology before asking.\n\n- Fewer errors\n- More in-depth questions asked\n- Increased trust in AI responses\n\n**\"I like that I can take a look at the key terms when I was phrasing a question in my mind… I also like how the color codes and animation link them together.\"**\n\n— Andrew Cho, Lead Data Scientist at BMW",
       },
     ],
+    contactNote: "For a more detailed walkthrough of this project, contact me at pw1101@berkeley.edu",
   },
 ]

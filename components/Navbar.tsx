@@ -19,7 +19,7 @@ export default function Navbar() {
     <header className={`fixed top-0 left-0 right-0 z-50 py-5 transition-colors duration-300 ${open ? "" : "backdrop-blur-[5px]"}`}>
       <div className="w-[90%] md:w-[70%] mx-auto flex items-center justify-between">
         <Link href="/" className="flex items-center relative z-50" onClick={() => setOpen(false)}>
-          <Image src="/images/winny_logo.png" alt="Winny Wang" width={61} height={32} priority />
+          <Image src="/images/winny_logo.png" alt="Winny Wang" width={61} height={32} priority style={{ height: 'auto' }} />
         </Link>
 
         {/* Desktop nav */}
