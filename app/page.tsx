@@ -17,7 +17,7 @@ export default function Home() {
           <div className="flex flex-col gap-[8px]">
             <p className="text-[16px] md:text-[20px]">
               <span className="text-[18px] md:text-[22px]">👩🏻‍💻</span>
-              {"  "}Currently designing @ Athenic Ai
+              {"  "}Currently designing @ Sybill AI
             </p>
             <p className="text-[16px] md:text-[20px]">
               <span className="text-[18px] md:text-[22px]">📍 </span>San Francisco, California
